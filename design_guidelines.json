@@ -1,0 +1,172 @@
+{
+  "app_name": "NL BUS",
+  "personality": "1 iOS-Native Clean",
+  "personality_one_liner": "A highly legible, map-first transit experience that uses crisp typography and a vibrant green/blue palette to instill confidence and clarity for commuters in Nova Lima.",
+  "color": {
+    "surface": "#FFFFFF",
+    "onSurface": "#0F172A",
+    "surfaceSecondary": "#F8FAFC",
+    "onSurfaceSecondary": "#1E293B",
+    "surfaceTertiary": "#E2E8F0",
+    "onSurfaceTertiary": "#334155",
+    "surfaceInverse": "#0F172A",
+    "onSurfaceInverse": "#FFFFFF",
+    "brand": "#0284C7",
+    "brandPrimary": "#0284C7",
+    "onBrandPrimary": "#FFFFFF",
+    "brandSecondary": "#10B981",
+    "onBrandSecondary": "#FFFFFF",
+    "brandTertiary": "#E0F2FE",
+    "onBrandTertiary": "#0369A1",
+    "success": "#10B981",
+    "onSuccess": "#FFFFFF",
+    "warning": "#F59E0B",
+    "onWarning": "#FFFFFF",
+    "error": "#EF4444",
+    "onError": "#FFFFFF",
+    "info": "#3B82F6",
+    "onInfo": "#FFFFFF",
+    "border": "#E2E8F0",
+    "borderStrong": "#94A3B8",
+    "divider": "#F1F5F9",
+    "muted": "#64748B"
+  },
+  "typography": {
+    "displayFontFamily": "Plus Jakarta Sans",
+    "textFontFamily": "Plus Jakarta Sans",
+    "scale": {
+      "sm": 12,
+      "base": 14,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24
+    }
+  },
+  "spacing": {
+    "rule": "Generous map exposure with tight, structured padding within data cards to fit transit metrics.",
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 48
+  },
+  "radius_tokens": {
+    "sm": 6,
+    "md": 12,
+    "lg": 20,
+    "pill": 999
+  },
+  "shadow_tier": "1",
+  "navigation": "bottom_tabs",
+  "icon_set": "Phosphor",
+  "glassmorphism": {
+    "enabled": "true",
+    "do's": [
+      "Use glassmorphism for the floating search bar / filter pills layered over the live map.",
+      "Use glassmorphism for the bottom tab bar to let the map bleed through.",
+      "Use glassmorphism for map overlay controls like 're-center' FAB."
+    ],
+    "dont's": [
+      "Do not use glassmorphism on the data-heavy route cards or arrival schedules (needs max legibility)."
+    ]
+  },
+  "platform_libraries": {
+    "glass": {
+      "ios": "expo-glass-effect",
+      "android": "expo-blur",
+      "low_end_android_fallback": "solid surfaceSecondary"
+    },
+    "image": "expo-image",
+    "blur": "expo-blur",
+    "bottom_sheet": "@gorhom/bottom-sheet",
+    "animation": "react-native-reanimated",
+    "gesture": "react-native-gesture-handler"
+  },
+  "screens": [
+    {
+      "name": "Home / Live Map",
+      "purpose": "A map-first dashboard showing nearby stops and a bottom sheet with favorite lines and quick actions.",
+      "states": {
+        "loading": "Map loading state with skeleton bottom sheet.",
+        "empty": "No nearby stops found - prompt user to search a specific route.",
+        "error": "Location access denied message with a settings CTA."
+      },
+      "layout": "Full-bleed react-native-maps view behind a glass floating search bar. A Gorhom bottom sheet rests in the bottom third containing 'Nearby Stops' and 'Favorite Lines' cards. Map has custom markers for stops."
+    },
+    {
+      "name": "Bus Routes List",
+      "purpose": "A structured directory of all available bus lines in Nova Lima.",
+      "states": {
+        "loading": "Centered spinner or skeleton list.",
+        "empty": "No routes match search filter.",
+        "error": "Failed to load routes, retry button."
+      },
+      "layout": "Standard iOS-Native list view. Large title header, sticky search input. Route items show Bus Number (in a brandPrimary pill) alongside Route Name and next arrival time."
+    },
+    {
+      "name": "Route Detail & Schedule",
+      "purpose": "Provides the specific schedule, full trajectory map, and real-time (mocked) status for a single line.",
+      "states": {
+        "loading": "Skeleton timeline and map.",
+        "empty": "No active buses on this line currently.",
+        "error": "Failed to load schedule."
+      },
+      "layout": "Split layout: Top 40% is the trajectory map. Bottom 60% is a scrollable vertical timeline (using a subtle left border with dots) displaying stops. Current bus location is indicated by a brandSecondary (green) glowing dot."
+    },
+    {
+      "name": "Route Planner",
+      "purpose": "Origin to Destination trip planner yielding the best bus transit options.",
+      "states": {
+        "loading": "Skeleton cards searching for routes.",
+        "empty": "No valid route found between selected points.",
+        "error": "Unable to calculate route."
+      },
+      "layout": "Top section: Stacked text inputs for 'From' and 'To' with a swap button. Bottom section: Result cards showing total time, walk duration, and bus line pill. Each card has max 5-6 key metrics."
+    },
+    {
+      "name": "Profile & Settings",
+      "purpose": "Manage account, guest mode, saved places, and service rating.",
+      "states": {
+        "loading": "Standard spinner.",
+        "empty": "Guest state (prompts to log in).",
+        "error": "Auth error message."
+      },
+      "layout": "Standard iOS inset-grouped list. Top section shows user avatar/email (or Guest login CTA), followed by rows for Saved Locations, Alerts, and Rate Service."
+    }
+  ],
+  "images": {
+    "onboarding_hero": {
+      "url": "https://images.unsplash.com/photo-1632276536839-84cad7fd03b0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjaXR5JTIwYnVzfGVufDB8fHx8MTc5MzMwMjQ0N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "A modern blue bus driving down a city street, representing NL BUS"
+    },
+    "nova_lima_cityscape": {
+      "url": "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwxfHxub3ZhJTIwbGltYSUyMGJyYXppbHxlbnwwfHx8fDE3OTMzMDI0NDd8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Aerial view of a coastal city, representing the region of Nova Lima"
+    },
+    "map_navigation_empty": {
+      "url": "https://images.unsplash.com/photo-1604357209793-fca5dca89f97?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxtYXAlMjBuYXZpZ2F0aW9ufGVufDB8fHx8MTc5MzMwMjQ0N3ww&ixlib=rb-4.1.0&q=85",
+      "alt": "Hand holding a smartphone displaying a map, used for empty map states"
+    }
+  },
+  "haptics": {
+    "events": {
+      "tab_press": "selection",
+      "route_save_favorite": "success",
+      "bottom_sheet_snap": "light",
+      "swap_origin_destination": "medium",
+      "primary_button_press": "medium"
+    }
+  },
+  "instructions_to_main_agent": [
+    "Follow the requested 'Verde e azul' palette: use the brandPrimary (#0284C7 Blue) for structural elements, headers, and route lines. Use brandSecondary (#10B981 Green) exclusively for active, live, or 'success' elements (e.g., real-time arrival text, 'bus is here' markers, 'Go' buttons).",
+    "Implement the Home Screen using a map-first 'Map-as-UI' approach. The map must be full-bleed using react-native-maps. Overlay a @gorhom/bottom-sheet containing nearby stops and favorite lines.",
+    "Do not anchor heavy text menus on top of the map. Use floating glassmorphic pills for the search bar and filter toggles on the map view.",
+    "For the Route Detail screen, use a vertical timeline layout (a left-aligned line with nodes) to represent the bus stops sequentially.",
+    "Data density: On route cards, group information logically and strictly limit to 5-6 metrics (bus number, destination, arrival time, total duration, crowd status). Do not clutter the card.",
+    "Ensure safe area is respected on the full-screen map, keeping floating action buttons above the bottom navigation bar and below the status bar.",
+    "Since Real-time tracking is 'em breve' (coming soon), mock the bus locations on the map using a distinct custom marker (perhaps a glowing green dot) and label it clearly in the UI.",
+    "Apply the gradient-to-dark scrim pattern (Layer 1 vertical gradient to Layer 0 image) if placing text over the onboarding_hero or nova_lima_cityscape images."
+  ]
+}
